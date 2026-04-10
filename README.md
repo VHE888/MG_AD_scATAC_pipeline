@@ -6,10 +6,10 @@ Understanding the Epigenomic Landscape Underlying Microglial State Transitions: 
 
 Microglia, the brain's resident immune cells, adopt diverse transcriptional states during aging and Alzheimer's disease (AD) progression. This project aims to investigate the epigenomic regulation underlying these transitions by:
 
-- Performing dimensionality reduction and clustering on snATAC-seq data using ArchR
-- Comparing marker genes derived from gene scores (ATAC-seq) and RNA expression (RNA-seq)
-- Linking transcription factors (TFs), cis-regulatory elements (CREs), and genes via peak-to-gene co-accessibility
-- Visualizing UMAP plots, differential peaks, and regulatory heatmaps to interpret regulatory programs
+- Performing dimensionality reduction and clustering of snATAC-seq data using ArchR
+- Comparing marker genes derived from chromatin accessibility (gene scores) and RNA expression
+- Linking transcription factors (TFs), cis-regulatory elements (CREs), and target genes through peak-to-gene co-accessibility
+- Visualizing UMAP embeddings, differential accessibility, and regulatory heatmaps to interpret gene regulatory programs
 
 ## Tools and Technologies
 
