@@ -1,4 +1,6 @@
-##-------------try to print the top 10 genes for each clusters that don't have much marker genes------------
+## ------------------------------------------------------------
+## Print top N marker genes for clusters with few markers
+## ------------------------------------------------------------
 
 markersGS <- readRDS("brain.microglia.filter/markersGS_7.2.rds")
 markerList <- getMarkers(markersGS)
@@ -9,38 +11,46 @@ top_markers_list <- list()
 
 for (cluster in target_clusters) {
   df <- markerList[[cluster]]
+  
   if (is.null(df)) {
     cat("Cluster", cluster, "is NULL. Skipped.\n")
     next
   }
   
-  # 自动选择排序列
+  # Automatically select sorting column
   if ("FDR" %in% colnames(df)) {
     sort_col <- "FDR"
   } else if ("Pval" %in% colnames(df)) {
     sort_col <- "Pval"
   } else {
-    stop("No FDR or Pval found in", cluster)
+    stop(paste("No FDR or Pval column found for cluster", cluster))
   }
   
+  # Sort by significance
   df_sorted <- df[order(df[[sort_col]]), ]
+  
+  # Select top N genes (or all if fewer than top_n)
   top_genes <- head(df_sorted, min(nrow(df_sorted), top_n))
   top_markers_list[[cluster]] <- top_genes
   
-  cat("Top genes for", cluster, ":\n")
+  # Print top 10 genes for quick inspection
+  cat("\nTop genes for", cluster, ":\n")
   print(head(top_genes[, c("name", sort_col)], 10))
 }
 
-##-------------how to see all the genes-------------
+## ------------------------------------------------------------
+## View top genes (unsorted) for all clusters
+## ------------------------------------------------------------
 
 for (cluster in names(markerList)) {
   df <- markerList[[cluster]]
+  
   if (is.null(df)) {
     cat("Cluster", cluster, "is NULL. Skipped.\n")
     next
   }
   
-  # Get top 10 genes (no sorting)
+  # Extract first 10 genes without sorting
   top_genes <- head(df$name, 10)
   
   cat("\nTop 10 genes for", cluster, ":\n")
