@@ -66,7 +66,6 @@ Microglia, the brain's resident immune cells, adopt diverse transcriptional stat
 - GO enrichment bubble chart
 - Overlap heatmap (ATAC vs RNA)
 
-
 ## Related References
 
 - Sun et al., *Cell*, 2023 – snRNA-seq of human microglia in AD  
